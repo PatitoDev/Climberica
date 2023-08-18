@@ -1,0 +1,131 @@
+[gd_scene load_steps=14 format=3 uid="uid://dgxstaptghgbt"]
+
+[ext_resource type="Script" path="res://MiniGames/Climb/Climb.gd" id="1_5p3oo"]
+[ext_resource type="Texture2D" uid="uid://ljt5fmq10skx" path="res://pole.png" id="2_famqf"]
+[ext_resource type="PackedScene" uid="uid://dg8dtsim7x2mh" path="res://MiniGames/Climb/Frog/Frog.tscn" id="2_s3f6w"]
+[ext_resource type="Texture2D" uid="uid://bf0fcx4dfb1sp" path="res://poleArm.png" id="4_6wewi"]
+[ext_resource type="PackedScene" uid="uid://bxa7iwntoer5n" path="res://MiniGames/Climb/Marker/Marker.tscn" id="4_xg2ro"]
+[ext_resource type="Texture2D" uid="uid://cs1xpw1y5goi0" path="res://flag.png" id="6_qglge"]
+[ext_resource type="Texture2D" uid="uid://cxprwmcuxsk4p" path="res://arrow.png" id="7_eveki"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua6c2"]
+atlas = ExtResource("6_qglge")
+region = Rect2(0, 0, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqutc"]
+atlas = ExtResource("6_qglge")
+region = Rect2(13, 0, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkhty"]
+atlas = ExtResource("6_qglge")
+region = Rect2(26, 0, 13, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x4r88"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ua6c2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqutc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkhty")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SystemFont" id="SystemFont_nxbok"]
+font_names = PackedStringArray("Pixellari")
+
+[sub_resource type="LabelSettings" id="LabelSettings_dtq6l"]
+font = SubResource("SystemFont_nxbok")
+font_size = 8
+outline_size = 4
+outline_color = Color(0.191406, 0.191406, 0.191406, 1)
+
+[node name="Climb" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_5p3oo")
+
+[node name="Bg" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TopRankOffScreen" type="Node2D" parent="Bg"]
+texture_filter = 1
+position = Vector2(144, 3)
+
+[node name="Flag2" type="AnimatedSprite2D" parent="Bg/TopRankOffScreen"]
+position = Vector2(-12, 14)
+sprite_frames = SubResource("SpriteFrames_x4r88")
+autoplay = "default"
+
+[node name="Arrow" type="Sprite2D" parent="Bg/TopRankOffScreen"]
+position = Vector2(0, 4.5)
+texture = ExtResource("7_eveki")
+
+[node name="MeterLabel" type="Label" parent="Bg/TopRankOffScreen"]
+offset_left = -5.0
+offset_top = 11.0
+offset_right = 46.0
+offset_bottom = 22.0
+text = "0M"
+label_settings = SubResource("LabelSettings_dtq6l")
+
+[node name="MeterLabelName" type="Label" parent="Bg/TopRankOffScreen"]
+offset_left = -5.0
+offset_top = 22.0
+offset_right = 86.0
+offset_bottom = 33.0
+text = "Niv3k_El_Pato"
+label_settings = SubResource("LabelSettings_dtq6l")
+
+[node name="StartPolePointer" type="Marker2D" parent="."]
+position = Vector2(28, 93)
+
+[node name="Marker" parent="." instance=ExtResource("4_xg2ro")]
+position = Vector2(80, 53)
+
+[node name="Pole" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(27, -321)
+scale = Vector2(1, 278.667)
+texture = ExtResource("2_famqf")
+centered = false
+
+[node name="PoleArm" type="Sprite2D" parent="."]
+position = Vector2(74, 90)
+texture = ExtResource("4_6wewi")
+
+[node name="PoleArm2" type="Sprite2D" parent="."]
+position = Vector2(16, 91)
+texture = ExtResource("4_6wewi")
+flip_h = true
+
+[node name="Holds" type="Node2D" parent="."]
+
+[node name="Frog" parent="." instance=ExtResource("2_s3f6w")]
+position = Vector2(-4, 50)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer"]
+texture_filter = 1
+
+[node name="MeterContainer" type="Node2D" parent="CanvasLayer/Node2D"]
+position = Vector2(13, 7)
+
+[node name="Flag" type="AnimatedSprite2D" parent="CanvasLayer/Node2D/MeterContainer"]
+position = Vector2(-5.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_x4r88")
+autoplay = "default"
+
+[node name="MeterLabel" type="Label" parent="CanvasLayer/Node2D/MeterContainer"]
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 21.0
+offset_bottom = 9.0
+text = "0M"
+label_settings = SubResource("LabelSettings_dtq6l")

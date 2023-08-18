@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0kk704oqr2we"]
+
+[ext_resource type="Script" path="res://Scenes/Climb/Hold/hold.gd" id="1_ajtww"]
+[ext_resource type="Texture2D" uid="uid://bf0fcx4dfb1sp" path="res://Images/poleArm.png" id="2_m3si6"]
+
+[node name="Hold" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_ajtww")
+char = null
+
+[node name="HandHoldPosition" type="Marker2D" parent="."]
+position = Vector2(9, 0)
+
+[node name="PoleArm" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("2_m3si6")
+centered = false

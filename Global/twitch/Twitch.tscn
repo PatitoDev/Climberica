@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://5kvrtqa5quv6"]
+
+[ext_resource type="Script" path="res://Global/twitch/Twitch.gd" id="1_ds2q2"]
+[ext_resource type="PackedScene" uid="uid://o7gdmk6mguac" path="res://Global/twitch/AuthServer.tscn" id="2_l7neg"]
+
+[node name="Twitch" type="Node"]
+script = ExtResource("1_ds2q2")
+
+[node name="AuthServer" parent="." instance=ExtResource("2_l7neg")]
+
+[connection signal="OnTokenReceived" from="AuthServer" to="." method="_on_auth_server_on_token_received"]

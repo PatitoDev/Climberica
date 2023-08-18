@@ -1,0 +1,544 @@
+[gd_scene load_steps=20 format=3 uid="uid://dg8dtsim7x2mh"]
+
+[ext_resource type="Script" path="res://Scenes/Climb/Frog/Frog.gd" id="1_uslln"]
+[ext_resource type="Texture2D" uid="uid://d3hoa7qay2y4k" path="res://Scenes/Climb/Frog/armPart.png" id="2_0dpap"]
+[ext_resource type="Texture2D" uid="uid://diiu75cxp2mst" path="res://Scenes/Climb/Frog/hand-sheet.png" id="3_j6u6s"]
+[ext_resource type="Texture2D" uid="uid://br72e8oxhbw7c" path="res://Scenes/Climb/Frog/smoke.png" id="4_x1rep"]
+[ext_resource type="Texture2D" uid="uid://0c22w16b7pgg" path="res://Scenes/Climb/Frog/foot-sprite-sheet.png" id="5_0ptkp"]
+[ext_resource type="Texture2D" uid="uid://bh48yeadbu1bk" path="res://Scenes/Climb/Frog/frogbody.png" id="6_tyam3"]
+[ext_resource type="Texture2D" uid="uid://bx5mdr06p1p4u" path="res://Images/wrench.png" id="7_p1dnc"]
+[ext_resource type="Texture2D" uid="uid://bl7wadug1j81x" path="res://Scenes/Climb/Frog/armLineWhite.png" id="8_3hn5l"]
+[ext_resource type="AudioStream" uid="uid://bq3shj1wt0jm5" path="res://Scenes/Climb/Frog/075681_electric-shock-33018.mp3" id="9_7c2k2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rk0v7"]
+radius = 4.12311
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_81eht"]
+radius = 4.47214
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n747k"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dhbxl"]
+emission_shape = 1
+emission_sphere_radius = 31.33
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kqft7"]
+radius = 4.12311
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qbgpf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v7mbq"]
+radius = 4.0
+height = 22.0
+
+[sub_resource type="Animation" id="Animation_kpgl7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftHandBody/LeftHand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightHandBody/RightHand:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftLeg/LeftFoot/Hand:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RightLeg/RightFoot/Hand:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RigidBody2D/FrogBody:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LeftArmLine:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_0dpap")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RightArmLine:texture")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_0dpap")]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LeftLeg/LeftLegLine:texture")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_0dpap")]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RightLeg/RightLegLine:texture")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_0dpap")]
+}
+
+[sub_resource type="Animation" id="Animation_if4tt"]
+resource_name = "shock"
+length = 1.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftHandBody/LeftHand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2, 0.3, 0.35, 0.45, 0.5, 0.6, 0.65, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightHandBody/RightHand:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2, 0.3, 0.35, 0.45, 0.5, 0.6, 0.65, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftLeg/LeftFoot/Hand:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2, 0.3, 0.35, 0.45, 0.5, 0.6, 0.65, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RightLeg/RightFoot/Hand:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2, 0.3, 0.35, 0.45, 0.5, 0.6, 0.65, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RigidBody2D/FrogBody:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2, 0.3, 0.35, 0.45, 0.5, 0.6, 0.65, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LeftArmLine:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2, 0.3, 0.35, 0.45, 0.5, 0.6, 0.65, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RightArmLine:texture")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2, 0.3, 0.35, 0.45, 0.5, 0.6, 0.65, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap")]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LeftLeg/LeftLegLine:texture")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2, 0.3, 0.35, 0.45, 0.5, 0.6, 0.65, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap")]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RightLeg/RightLegLine:texture")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2, 0.3, 0.35, 0.45, 0.5, 0.6, 0.65, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap"), ExtResource("8_3hn5l"), ExtResource("2_0dpap")]
+}
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AudioStreamPlayer")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_7c2k2")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/9/use_blend = true
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"onShockAnimationEnd"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sa0vf"]
+_data = {
+"RESET": SubResource("Animation_kpgl7"),
+"shock": SubResource("Animation_if4tt")
+}
+
+[node name="Frog" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_uslln")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(48, 31)
+
+[node name="LeftArmLine" type="Line2D" parent="."]
+texture_repeat = 2
+position = Vector2(28.8087, 43.1517)
+points = PackedVector2Array(0, 0, 12.1913, 6.8483)
+width = 3.6
+texture = ExtResource("2_0dpap")
+texture_mode = 1
+
+[node name="RightArmLine" type="Line2D" parent="."]
+texture_repeat = 2
+position = Vector2(66.2823, 41.0704)
+points = PackedVector2Array(0, 0, -10.2823, 8.92964)
+width = 3.6
+texture = ExtResource("2_0dpap")
+texture_mode = 1
+
+[node name="LeftHandBody" type="CharacterBody2D" parent="."]
+position = Vector2(28, 42)
+collision_layer = 9
+collision_mask = 9
+
+[node name="LeftHandPinJoin" type="PinJoint2D" parent="LeftHandBody"]
+position = Vector2(4, 4)
+node_a = NodePath("..")
+node_b = NodePath("../../RigidBody2D")
+softness = 16.0
+
+[node name="LeftHand" type="Sprite2D" parent="LeftHandBody"]
+position = Vector2(0.499996, 0.5)
+rotation = -0.244979
+texture = ExtResource("3_j6u6s")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHandBody"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_rk0v7")
+
+[node name="RightHandBody" type="CharacterBody2D" parent="."]
+position = Vector2(67, 41)
+collision_layer = 9
+collision_mask = 9
+
+[node name="RightHandPinJoin" type="PinJoint2D" parent="RightHandBody"]
+position = Vector2(-3, 4)
+node_a = NodePath("..")
+node_b = NodePath("../../RigidBody2D")
+softness = 16.0
+
+[node name="RightHand" type="Sprite2D" parent="RightHandBody"]
+rotation = 1.67046
+texture = ExtResource("3_j6u6s")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightHandBody"]
+shape = SubResource("CircleShape2D_81eht")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="RightHandBody"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_n747k")
+position = Vector2(-17, 40)
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_dhbxl")
+texture = ExtResource("4_x1rep")
+
+[node name="LeftLeg" type="Node2D" parent="."]
+position = Vector2(13, 0)
+
+[node name="LeftLegLine" type="Line2D" parent="LeftLeg"]
+texture_repeat = 2
+position = Vector2(15.6888, 83.7866)
+points = PackedVector2Array(0, 0, 12.3112, -15.7866)
+width = 3.6
+texture = ExtResource("2_0dpap")
+texture_mode = 1
+
+[node name="LeftFoot" type="RigidBody2D" parent="LeftLeg"]
+position = Vector2(15, 84)
+rotation = 4.69494
+mass = 0.1
+lock_rotation = true
+
+[node name="Hand" type="Sprite2D" parent="LeftLeg/LeftFoot"]
+rotation = -1.67388
+texture = ExtResource("5_0ptkp")
+offset = Vector2(0, -1.1)
+flip_h = true
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftLeg/LeftFoot"]
+visible = false
+shape = SubResource("CircleShape2D_kqft7")
+
+[node name="Leg1" type="RigidBody2D" parent="LeftLeg"]
+position = Vector2(20, 78)
+mass = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftLeg/Leg1"]
+visible = false
+shape = SubResource("CircleShape2D_kqft7")
+
+[node name="Leg2" type="RigidBody2D" parent="LeftLeg"]
+position = Vector2(24, 73)
+mass = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftLeg/Leg2"]
+visible = false
+shape = SubResource("CircleShape2D_kqft7")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="LeftLeg"]
+visible = false
+position = Vector2(17, 81)
+node_a = NodePath("../LeftFoot")
+node_b = NodePath("../Leg1")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="LeftLeg"]
+visible = false
+position = Vector2(22, 75)
+node_a = NodePath("../Leg1")
+node_b = NodePath("../Leg2")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="LeftLeg"]
+visible = false
+position = Vector2(27, 69)
+node_a = NodePath("../Leg2")
+node_b = NodePath("../../RigidBody2D")
+
+[node name="RightLeg" type="Node2D" parent="."]
+position = Vector2(53, -1)
+
+[node name="RightLegLine" type="Line2D" parent="RightLeg"]
+texture_repeat = 2
+position = Vector2(14.9677, 83.2796)
+points = PackedVector2Array(0, 0, -10.9677, -14.2796)
+width = 3.6
+texture = ExtResource("2_0dpap")
+texture_mode = 1
+
+[node name="RightFoot" type="RigidBody2D" parent="RightLeg"]
+position = Vector2(15, 84)
+mass = 0.1
+lock_rotation = true
+
+[node name="Hand" type="Sprite2D" parent="RightLeg/RightFoot"]
+rotation = -2.98894
+texture = ExtResource("5_0ptkp")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightLeg/RightFoot"]
+shape = SubResource("CircleShape2D_kqft7")
+
+[node name="Leg1" type="RigidBody2D" parent="RightLeg"]
+position = Vector2(10, 78)
+mass = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightLeg/Leg1"]
+shape = SubResource("CircleShape2D_kqft7")
+
+[node name="Leg2" type="RigidBody2D" parent="RightLeg"]
+position = Vector2(6, 73)
+mass = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightLeg/Leg2"]
+shape = SubResource("CircleShape2D_kqft7")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RightLeg"]
+visible = false
+position = Vector2(12, 81)
+node_a = NodePath("../RightFoot")
+node_b = NodePath("../Leg1")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="RightLeg"]
+visible = false
+position = Vector2(8, 75)
+node_a = NodePath("../Leg1")
+node_b = NodePath("../Leg2")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="RightLeg"]
+visible = false
+position = Vector2(4, 69)
+node_a = NodePath("../Leg2")
+node_b = NodePath("../../RigidBody2D")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(49, 54)
+lock_rotation = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="RigidBody2D"]
+position = Vector2(-1, -23)
+remote_path = NodePath("../../Camera2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CapsuleShape2D_qbgpf")
+
+[node name="FrogBody" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("6_tyam3")
+hframes = 2
+
+[node name="LeftShoulderMarker" type="Marker2D" parent="RigidBody2D/FrogBody"]
+position = Vector2(-8, -4)
+
+[node name="LeftLegMarker" type="Marker2D" parent="RigidBody2D/FrogBody"]
+position = Vector2(-8, 14)
+
+[node name="RightLegMarker" type="Marker2D" parent="RigidBody2D/FrogBody"]
+position = Vector2(8, 14)
+
+[node name="RightShoulderMarker" type="Marker2D" parent="RigidBody2D/FrogBody"]
+position = Vector2(7, -4)
+
+[node name="Wrench" type="RigidBody2D" parent="."]
+position = Vector2(53, 63)
+collision_layer = 0
+collision_mask = 0
+mass = 0.01
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Wrench"]
+node_a = NodePath("../../RigidBody2D")
+node_b = NodePath("..")
+
+[node name="Wrench" type="Sprite2D" parent="Wrench"]
+position = Vector2(0, 8)
+texture = ExtResource("7_p1dnc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wrench"]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_v7mbq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sa0vf")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0

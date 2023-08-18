@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://mfyoiw6qqhci"]
+
+[ext_resource type="Script" path="res://Scenes/Climb/Balloon/Balloon.gd" id="1_u8s36"]
+[ext_resource type="Texture2D" uid="uid://df5xg1wjb34ew" path="res://Images/ballon.png" id="2_l0j4p"]
+[ext_resource type="FontFile" uid="uid://24u51pg3pulx" path="res://Font/monogram.ttf" id="3_teuhn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yivtc"]
+font = ExtResource("3_teuhn")
+font_size = 45
+
+[sub_resource type="Animation" id="Animation_mur8t"]
+resource_name = "IDLE"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ballon:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-31, -45), Vector2(-31, -47)]
+}
+
+[sub_resource type="Animation" id="Animation_i1xk1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ballon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-31, -45)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sxsif"]
+_data = {
+"IDLE": SubResource("Animation_mur8t"),
+"RESET": SubResource("Animation_i1xk1")
+}
+
+[node name="Balloon" type="Node2D"]
+script = ExtResource("1_u8s36")
+
+[node name="Ballon" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_l0j4p")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -31.0
+offset_top = -45.0
+offset_right = 33.0
+offset_bottom = -6.0
+text = "0"
+label_settings = SubResource("LabelSettings_yivtc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "IDLE"
+libraries = {
+"": SubResource("AnimationLibrary_sxsif")
+}

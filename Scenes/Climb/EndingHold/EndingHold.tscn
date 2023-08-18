@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckntwmstdiaa0"]
+
+[ext_resource type="Script" path="res://Scenes/Climb/EndingHold/EndingHold.gd" id="1_q3knk"]
+[ext_resource type="Texture2D" uid="uid://br72e8oxhbw7c" path="res://Scenes/Climb/Frog/smoke.png" id="2_l5163"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ty7gu"]
+radius = 2.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_npvto"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lkrf0"]
+emission_shape = 1
+emission_sphere_radius = 18.07
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="EndingHold" type="Node2D"]
+script = ExtResource("1_q3knk")
+
+[node name="HandHoldPosition" type="Marker2D" parent="."]
+position = Vector2(19, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(19, 0)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ty7gu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_npvto")
+position = Vector2(19, 0)
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_lkrf0")
+texture = ExtResource("2_l5163")
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
