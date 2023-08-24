@@ -245,24 +245,20 @@ position = Vector2(1, 3)
 
 [node name="Hold" parent="Holds" instance=ExtResource("4_qq0ls")]
 position = Vector2(6, -20)
-char = ""
 
 [node name="Hold3" parent="Holds" instance=ExtResource("4_qq0ls")]
 position = Vector2(-8, -38)
 isLeft = true
-char = ""
 
 [node name="Hold2" parent="Holds" instance=ExtResource("4_qq0ls")]
 position = Vector2(6, -56)
-char = ""
 
 [node name="Hold4" parent="Holds" instance=ExtResource("4_qq0ls")]
 position = Vector2(-8, -68)
 isLeft = true
-char = ""
 
 [node name="EndingHold" parent="Holds" instance=ExtResource("5_icme5")]
-position = Vector2(2, -121)
+position = Vector2(-13, -102)
 
 [node name="Control" type="Control" parent="."]
 z_index = 1

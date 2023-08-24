@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dgxstaptghgbt"]
+[gd_scene load_steps=21 format=3 uid="uid://dgxstaptghgbt"]
 
 [ext_resource type="Script" path="res://Scenes/Climb/Climb.gd" id="1_7a36q"]
 [ext_resource type="Texture2D" uid="uid://dfvx2w8j714fd" path="res://Images/bg2.png" id="2_o1e5r"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://bf0fcx4dfb1sp" path="res://Images/poleArm.png" id="7_4goov"]
 [ext_resource type="PackedScene" uid="uid://dhsma7w704v1j" path="res://Scenes/Climb/Ending/ending.tscn" id="8_5kb5f"]
 [ext_resource type="PackedScene" uid="uid://dg8dtsim7x2mh" path="res://Scenes/Climb/Frog/Frog.tscn" id="9_0mv03"]
-[ext_resource type="FontFile" uid="uid://24u51pg3pulx" path="res://Font/monogram.ttf" id="10_vfnp8"]
 [ext_resource type="PackedScene" uid="uid://bgnaa0n8yejrb" path="res://Scenes/Clouds/Clouds.tscn" id="11_6rp57"]
 [ext_resource type="PackedScene" uid="uid://cuvs4okf630mr" path="res://Scenes/Climb/Notification/Notification.tscn" id="12_77urk"]
 [ext_resource type="PackedScene" uid="uid://mfyoiw6qqhci" path="res://Scenes/Climb/Balloon/Balloon.tscn" id="12_oxbtx"]
@@ -53,13 +52,6 @@ font_size = 8
 outline_size = 4
 outline_color = Color(0.192157, 0.192157, 0.192157, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_2ygky"]
-font = ExtResource("10_vfnp8")
-font_size = 70
-outline_size = 10
-outline_color = Color(0.192157, 0.192157, 0.192157, 1)
-shadow_color = Color(0.192157, 0.192157, 0.192157, 1)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n4cea"]
 size = Vector2(666, 20)
 
@@ -67,31 +59,67 @@ size = Vector2(666, 20)
 texture_filter = 1
 script = ExtResource("1_7a36q")
 
+[node name="StartPolePointer" type="Marker2D" parent="."]
+position = Vector2(45, 75)
+
 [node name="Clouds" parent="." instance=ExtResource("11_6rp57")]
 position = Vector2(127, -360)
 
-[node name="Bg2" type="Sprite2D" parent="."]
+[node name="CloudsStatic" type="Sprite2D" parent="."]
 z_index = -2
 position = Vector2(42, -114)
 texture = ExtResource("2_o1e5r")
 
-[node name="Bg" type="CanvasLayer" parent="."]
+[node name="UI Front" type="CanvasLayer" parent="."]
+
+[node name="Node2D" type="Node2D" parent="UI Front"]
+texture_filter = 1
+
+[node name="MeterContainer" type="Node2D" parent="UI Front/Node2D"]
+position = Vector2(13, 7)
+
+[node name="Flag" type="AnimatedSprite2D" parent="UI Front/Node2D/MeterContainer"]
+visible = false
+position = Vector2(-5.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_x4r88")
+autoplay = "default"
+
+[node name="MeterLabel" type="Label" parent="UI Front/Node2D/MeterContainer"]
+offset_left = -7.0
+offset_top = -2.0
+offset_right = 13.0
+offset_bottom = 9.0
+text = "0M"
+label_settings = SubResource("LabelSettings_dtq6l")
+
+[node name="UI Back" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="TopRankOffScreen" type="Node2D" parent="Bg"]
-texture_filter = 1
-position = Vector2(144, 3)
+[node name="Control" type="Control" parent="UI Back"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+size_flags_horizontal = 10
+size_flags_vertical = 2
 
-[node name="Flag2" type="AnimatedSprite2D" parent="Bg/TopRankOffScreen"]
+[node name="TopRankOffScreen" type="Node2D" parent="UI Back/Control"]
+texture_filter = 1
+position = Vector2(-13, 5)
+
+[node name="Flag2" type="AnimatedSprite2D" parent="UI Back/Control/TopRankOffScreen"]
 position = Vector2(-12, 14)
 sprite_frames = SubResource("SpriteFrames_x4r88")
 autoplay = "default"
 
-[node name="Arrow" type="Sprite2D" parent="Bg/TopRankOffScreen"]
+[node name="Arrow" type="Sprite2D" parent="UI Back/Control/TopRankOffScreen"]
 position = Vector2(0, 4.5)
 texture = ExtResource("3_nnihm")
 
-[node name="MeterLabel" type="Label" parent="Bg/TopRankOffScreen"]
+[node name="MeterLabel" type="Label" parent="UI Back/Control/TopRankOffScreen"]
 offset_left = -5.0
 offset_top = 11.0
 offset_right = 46.0
@@ -99,7 +127,7 @@ offset_bottom = 22.0
 text = "2"
 label_settings = SubResource("LabelSettings_dtq6l")
 
-[node name="MeterLabelName" type="Label" parent="Bg/TopRankOffScreen"]
+[node name="MeterLabelName" type="Label" parent="UI Back/Control/TopRankOffScreen"]
 offset_left = -5.0
 offset_top = 22.0
 offset_right = 86.0
@@ -107,11 +135,8 @@ offset_bottom = 33.0
 text = "Niv3k_El_Pato"
 label_settings = SubResource("LabelSettings_dtq6l")
 
-[node name="StartPolePointer" type="Marker2D" parent="."]
-position = Vector2(45, 75)
-
-[node name="Marker" parent="." instance=ExtResource("4_jtulm")]
-position = Vector2(80, 229)
+[node name="OnScreenHighScore" parent="." instance=ExtResource("4_jtulm")]
+position = Vector2(78, 23)
 
 [node name="Pole" type="Sprite2D" parent="."]
 texture_repeat = 2
@@ -120,18 +145,31 @@ scale = Vector2(1, 272)
 texture = ExtResource("5_rb0me")
 centered = false
 
-[node name="BottomLayer" type="Sprite2D" parent="."]
-position = Vector2(40, 233)
-texture = ExtResource("6_oyu6n")
-
-[node name="PoleArm" type="Sprite2D" parent="."]
+[node name="StartingHold1" type="Sprite2D" parent="."]
 position = Vector2(64, 88)
 texture = ExtResource("7_4goov")
 
-[node name="PoleArm2" type="Sprite2D" parent="."]
+[node name="StartingHold2" type="Sprite2D" parent="."]
 position = Vector2(26, 90)
 texture = ExtResource("7_4goov")
 flip_h = true
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="Ground" type="ColorRect" parent="Ground"]
+offset_left = -1468.0
+offset_top = 193.0
+offset_right = 1619.0
+offset_bottom = 1447.0
+color = Color(0.167969, 0.132813, 0.164063, 1)
+
+[node name="BottomLayer" type="Sprite2D" parent="Ground"]
+position = Vector2(40, 233)
+texture = ExtResource("6_oyu6n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(26, 196)
+shape = SubResource("RectangleShape2D_n4cea")
 
 [node name="Ending" parent="." instance=ExtResource("8_5kb5f")]
 position = Vector2(45, -64)
@@ -140,51 +178,12 @@ position = Vector2(45, -64)
 position = Vector2(45, 75)
 
 [node name="Balloon" parent="BallonCenterPoint" instance=ExtResource("12_oxbtx")]
-position = Vector2(52, 0)
+position = Vector2(57, 11)
 
 [node name="Holds" type="Node2D" parent="."]
 
 [node name="Frog" parent="." instance=ExtResource("9_0mv03")]
 position = Vector2(-4, 50)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="NextNumber" type="Label" parent="CanvasLayer"]
-visible = false
-offset_left = 61.0
-offset_top = 27.0
-offset_right = 182.0
-offset_bottom = 137.0
-text = "0"
-label_settings = SubResource("LabelSettings_2ygky")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="Node2D" type="Node2D" parent="CanvasLayer"]
-texture_filter = 1
-
-[node name="MeterContainer" type="Node2D" parent="CanvasLayer/Node2D"]
-position = Vector2(13, 7)
-
-[node name="Flag" type="AnimatedSprite2D" parent="CanvasLayer/Node2D/MeterContainer"]
-visible = false
-position = Vector2(-5.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_x4r88")
-autoplay = "default"
-
-[node name="MeterLabel" type="Label" parent="CanvasLayer/Node2D/MeterContainer"]
-offset_left = -7.0
-offset_top = -2.0
-offset_right = 13.0
-offset_bottom = 9.0
-text = "0M"
-label_settings = SubResource("LabelSettings_dtq6l")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(26, 196)
-shape = SubResource("RectangleShape2D_n4cea")
 
 [node name="Notification" parent="." instance=ExtResource("12_77urk")]
 

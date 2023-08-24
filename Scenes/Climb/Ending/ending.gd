@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var labelContainer: Control = $Control
 var holds:Array[Node] = [];
 
 func initFrom(startFrom: int):
@@ -12,9 +13,11 @@ func getNextHold():
 	return holds.pop_front();
 
 func _ready():
+	labelContainer.visible = false;
 	Global.OnWin.connect(end);
 
 func end(userId: String, userName: String):
+	labelContainer.visible = true;
 	Ranking.topRank.poleSize += 5;
 	if Ranking.topRank.lastVipUserId:
 		Twitch.removeVip(Ranking.topRank.lastVipUserId);

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c8apa1uow61ht"]
+[gd_scene load_steps=32 format=3 uid="uid://c8apa1uow61ht"]
 
 [ext_resource type="Script" path="res://Scenes/TitleScreen/TitleScreen.gd" id="1_a8cxj"]
 [ext_resource type="Texture2D" uid="uid://dfvx2w8j714fd" path="res://Images/bg2.png" id="2_evwx2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cmc4iei4jyrnj" path="res://Images/spark.png" id="5_sknx3"]
 [ext_resource type="Texture2D" uid="uid://btpuduoehhps" path="res://Images/climberica.png" id="6_oabe4"]
 [ext_resource type="Texture2D" uid="uid://b3h6iw65avnv" path="res://Images/frgoface.png" id="7_lct16"]
+[ext_resource type="Texture2D" uid="uid://ljt5fmq10skx" path="res://Images/pole.png" id="10_g638q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kg1ba"]
 atlas = ExtResource("5_sknx3")
@@ -126,7 +127,7 @@ loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("FrogFace:rotation")
+tracks/0/path = NodePath("CanvasLayer/CenterContainer/LoadingIcon:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -138,7 +139,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("FrogFace:scale")
+tracks/1/path = NodePath("CanvasLayer/CenterContainer/LoadingIcon:scale")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -196,99 +197,131 @@ script = ExtResource("1_a8cxj")
 metadata/_edit_horizontal_guides_ = [200.0]
 metadata/_edit_vertical_guides_ = [200.0]
 
-[node name="Bg2" type="Sprite2D" parent="."]
-position = Vector2(61, -26)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="Control" parent="CanvasLayer"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ExtraPole" type="TextureRect" parent="CanvasLayer/CenterContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = 144.0
+offset_right = 6.0
+offset_bottom = 3693.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_g638q")
+stretch_mode = 1
+
+[node name="CloudBG" type="Sprite2D" parent="CanvasLayer/CenterContainer"]
+position = Vector2(-40, -131)
 texture = ExtResource("2_evwx2")
 
-[node name="Clouds" parent="." instance=ExtResource("3_co7ig")]
-position = Vector2(123, 101)
+[node name="Clouds" parent="CanvasLayer/CenterContainer" instance=ExtResource("3_co7ig")]
+position = Vector2(22, -4)
 
-[node name="EndingNew" type="Sprite2D" parent="."]
-position = Vector2(-205, 51)
+[node name="PoleTop" type="Sprite2D" parent="CanvasLayer/CenterContainer"]
+position = Vector2(-306, -54)
 texture = ExtResource("4_lk2k6")
 centered = false
 
-[node name="Sparks" type="Node2D" parent="."]
-position = Vector2(100, 252)
+[node name="Sparks" type="Node2D" parent="CanvasLayer/CenterContainer"]
+position = Vector2(-1, 147)
 
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Sparks"]
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer/Sparks"]
 position = Vector2(13, -85)
 sprite_frames = SubResource("SpriteFrames_t7d82")
 autoplay = "default"
 frame_progress = 0.476167
 
-[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Sparks"]
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer/Sparks"]
 position = Vector2(13, -59)
 sprite_frames = SubResource("SpriteFrames_t7d82")
 autoplay = "default"
 flip_v = true
 
-[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Sparks"]
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer/Sparks"]
 position = Vector2(-6.5, -85)
 sprite_frames = SubResource("SpriteFrames_t7d82")
 autoplay = "default"
 flip_h = true
 
-[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="Sparks"]
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer/Sparks"]
 position = Vector2(-6.5, -59)
 sprite_frames = SubResource("SpriteFrames_t7d82")
 autoplay = "default"
 flip_h = true
 flip_v = true
 
-[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="Sparks"]
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer/Sparks"]
 position = Vector2(-49, -135)
 sprite_frames = SubResource("SpriteFrames_t7d82")
 autoplay = "default"
 flip_h = true
 
-[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="Sparks"]
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer/Sparks"]
 position = Vector2(-27, -105)
 sprite_frames = SubResource("SpriteFrames_t7d82")
 autoplay = "default"
 flip_h = true
 
-[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="Sparks"]
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer/Sparks"]
 position = Vector2(-49, -104)
 sprite_frames = SubResource("SpriteFrames_t7d82")
 autoplay = "default"
 flip_h = true
 
-[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="Sparks"]
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer/Sparks"]
 position = Vector2(-27, -138)
 sprite_frames = SubResource("SpriteFrames_t7d82")
 autoplay = "default"
 flip_h = true
 
-[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="Sparks"]
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer/Sparks"]
 position = Vector2(27, -136)
 sprite_frames = SubResource("SpriteFrames_t7d82")
 autoplay = "default"
 
-[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="Sparks"]
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer/Sparks"]
 position = Vector2(49, -104)
 sprite_frames = SubResource("SpriteFrames_t7d82")
 autoplay = "default"
 
-[node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="Sparks"]
+[node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer/Sparks"]
 position = Vector2(26, -104)
 sprite_frames = SubResource("SpriteFrames_t7d82")
 autoplay = "default"
 
-[node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="Sparks"]
+[node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer/Sparks"]
 position = Vector2(49, -136)
 sprite_frames = SubResource("SpriteFrames_t7d82")
 autoplay = "default"
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(93, 64)
+[node name="Duck" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer"]
+position = Vector2(-8, -41)
 sprite_frames = SubResource("SpriteFrames_h7a1i")
 autoplay = "default"
 centered = false
 
-[node name="TitleContainer" type="Node2D" parent="."]
+[node name="TitleContainer" type="Node2D" parent="CanvasLayer/CenterContainer"]
+position = Vector2(-101, -105)
 
-[node name="TextureButton" type="TextureButton" parent="TitleContainer"]
+[node name="LoginBtn" type="TextureButton" parent="CanvasLayer/CenterContainer/TitleContainer"]
 offset_left = 57.0
 offset_top = 45.0
 offset_right = 143.0
@@ -298,21 +331,25 @@ texture_pressed = SubResource("AtlasTexture_614kh")
 texture_hover = SubResource("AtlasTexture_lb8y7")
 texture_disabled = SubResource("AtlasTexture_lb8y7")
 texture_focused = SubResource("AtlasTexture_614kh")
+metadata/_edit_use_anchors_ = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/CenterContainer"]
+root_node = NodePath("../../..")
 autoplay = "rotate"
 libraries = {
 "": SubResource("AnimationLibrary_cmndc")
 }
 
-[node name="Climberica" type="Sprite2D" parent="."]
-position = Vector2(101, 29)
+[node name="Climberica" type="Sprite2D" parent="CanvasLayer/CenterContainer"]
+position = Vector2(0, -76)
 texture = ExtResource("6_oabe4")
 
-[node name="FrogFace" type="AnimatedSprite2D" parent="."]
-position = Vector2(100, 52)
+[node name="LoadingIcon" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer"]
+position = Vector2(-1, -53)
+rotation = 6.17032
+scale = Vector2(1.49102, 1.49102)
 sprite_frames = SubResource("SpriteFrames_7s1g3")
 autoplay = "default"
 frame_progress = 0.770145
 
-[connection signal="pressed" from="TitleContainer/TextureButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/TitleContainer/LoginBtn" to="." method="_on_button_pressed"]

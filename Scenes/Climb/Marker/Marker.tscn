@@ -6,6 +6,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_4472q"]
 font_names = PackedStringArray("Pixellari")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_fo42p"]
 font = SubResource("SystemFont_4472q")
@@ -65,8 +66,9 @@ horizontal_alignment = 2
 
 [node name="Line2D" type="Line2D" parent="."]
 texture_repeat = 2
-position = Vector2(-217, 0)
-points = PackedVector2Array(0, 0, 500, 0)
+position = Vector2(-992.452, 1.54781)
+scale = Vector2(2.54781, 2.54781)
+points = PackedVector2Array(-135.233, 0, 1099.55, 0)
 width = 1.0
 texture = ExtResource("2_2dj6c")
 texture_mode = 1

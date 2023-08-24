@@ -36,6 +36,7 @@ window/size/transparent=true
 window/size/window_width_override=800
 window/size/window_height_override=800
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/per_pixel_transparency/allowed=true
 
 [rendering]

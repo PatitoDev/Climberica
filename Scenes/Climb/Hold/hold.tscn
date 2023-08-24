@@ -6,7 +6,6 @@
 [node name="Hold" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_ajtww")
-char = null
 
 [node name="HandHoldPosition" type="Marker2D" parent="."]
 position = Vector2(9, 0)

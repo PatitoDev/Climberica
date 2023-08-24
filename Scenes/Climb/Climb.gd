@@ -15,7 +15,11 @@ var poleAmount:int;
 @onready var frog: Node2D = $Frog
 @onready var holds = [];
 @onready var ending: Node2D = $Ending
-@onready var nextNumber: Label = $CanvasLayer/NextNumber
+@onready var onScreenHighScore: Node2D = $OnScreenHighScore
+@onready var offScreenHighScoreContainer: Node2D = $'UI Back/Control/TopRankOffScreen'
+@onready var meterLabelOnScreen: Label = $'UI Front/Node2D/MeterContainer/MeterLabel'
+@onready var meterLabelOffScreen: Label = $'UI Back/Control/TopRankOffScreen/MeterLabel'
+@onready var meterLabelName: Label = $'UI Back/Control/TopRankOffScreen/MeterLabelName'
 
 const ENDING_EXTRA_HEIGHT_IN_METERS = 17;
 const STARTING_POLE_Y_POSITION = 84;
@@ -28,12 +32,12 @@ func _ready():
 	Twitch.OnMessage.connect(onMessage);
 	generateHolds();
 	if Ranking.topRank.yPosition == 0:
-		$Marker.global_position.y = 300;
+		onScreenHighScore.global_position.y = 300;
 	else:
-		$Marker.global_position.y = Ranking.topRank.yPosition;
+		onScreenHighScore.global_position.y = Ranking.topRank.yPosition;
 	if Ranking.topRank.userName:
-		$Marker.updateName(Ranking.topRank.userName, str(Ranking.topRank.heightInMeters));
-	$Bg/TopRankOffScreen.visible = Ranking.topRank.yPosition < $Frog.getPosition().y - 150;
+		onScreenHighScore.updateName(Ranking.topRank.userName, str(Ranking.topRank.heightInMeters));
+	offScreenHighScoreContainer.visible = Ranking.topRank.yPosition < frog.getPosition().y - 150;
 	updateRankingLabel();
 	updateNextLabel();
 
@@ -68,29 +72,32 @@ func _physics_process(delta: float) -> void:
 	$Pole.global_position.y = max($Frog.getPosition().y - 500, ending.global_position.y);
 	var height = floor(((-$Frog.getPosition().y + startingPosition) / 10));
 	positionInMeters = height;
-	$CanvasLayer/Node2D/MeterContainer/MeterLabel.text = str(height) + '/' + str(totalHeightInMeters) + 'M'
+	meterLabelOnScreen.text = str(height) + '/' + str(totalHeightInMeters) + 'M'
 
 func updateRanking(userName: String, userId: String):
 	if positionInMeters > Ranking.topRank.heightInMeters:
 		var tween = get_tree().create_tween();
-		tween.tween_property($Marker, 'global_position:y', $Frog.getPosition().y, 0.5);
+		tween.tween_property(onScreenHighScore, 'global_position:y', $Frog.getPosition().y, 0.5);
 
-		$Marker.updateName(userName, str(positionInMeters));
+		onScreenHighScore.updateName(userName, str(positionInMeters));
 		Ranking.topRank.heightInMeters = positionInMeters;
-		Ranking.topRank.yPosition = $Marker.global_position.y;
+		Ranking.topRank.yPosition = onScreenHighScore.global_position.y;
 		Ranking.topRank.userName = userName;
 		Ranking.topRank.userId = userId;
 
 	updateRankingLabel();
-	$Bg/TopRankOffScreen.visible = Ranking.topRank.yPosition < $Frog.getPosition().y - 150;
+	offScreenHighScoreContainer.visible = Ranking.topRank.yPosition < $Frog.getPosition().y - 150;
 
 func updateRankingLabel():
 	if !Ranking.topRank.userName:
 		return;
-	$Bg/TopRankOffScreen/MeterLabel.text = str(Ranking.topRank.heightInMeters) + 'M';
-	$Bg/TopRankOffScreen/MeterLabelName.text = Ranking.topRank.userName;
+	meterLabelOffScreen.text = str(Ranking.topRank.heightInMeters) + 'M';
+	meterLabelName.text = Ranking.topRank.userName;
 
 func onMessage(msg: ChatMessage):
+	if $Frog.isFalling:
+		return
+
 	var regex = RegEx.new()
 	regex.compile("^[0-9]+$");
 	var result = regex.search(msg.message);
@@ -112,14 +119,13 @@ func onMessage(msg: ChatMessage):
 			nextHold = ending.getNextHold();
 			if !nextHold:
 				Global.OnWin.emit(msg.userId, msg.displayName);
-				$CanvasLayer/NextNumber.visible = false;
 				return;
 		counter += 1;
 		updateNextLabel();
 		return;
 	Twitch.timeoutUser(msg.userId, 5);
 	$Notification.showText('Wrong Number!\n' + msg.displayName);
-	$Frog.fall();
+	frog.fall();
 
 func updateNextLabel():
 	$BallonCenterPoint/Balloon.updateLabel(str(counter));
