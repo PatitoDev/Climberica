@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Quackerica"
+config/name="Climberica"
 config/tags=PackedStringArray("jams")
 run/main_scene="res://Scenes/SpashScreen/SplashScreen.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
