@@ -108,5 +108,4 @@ func onGrabbedLastHold():
 		isFalling = true;
 	$AnimationPlayer.play('shock');
 	$RightHandBody/GPUParticles2D.emitting = true;
-	Ranking.resetRecord();
 	$RigidBody2D/RemoteTransform2D.queue_free();

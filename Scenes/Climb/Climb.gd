@@ -86,7 +86,7 @@ func updateRanking(userName: String, userId: String):
 		Ranking.topRank.userId = userId;
 
 	updateRankingLabel();
-	offScreenHighScoreContainer.visible = Ranking.topRank.yPosition < $Frog.getPosition().y - 150;
+
 
 func updateRankingLabel():
 	if !Ranking.topRank.userName:
@@ -107,8 +107,8 @@ func onMessage(msg: ChatMessage):
 	if !nextHold:
 		return;
 
-#	if msg.userId == lastUser:
-		#return;
+	if msg.userId == lastUser and !Ranking.topRank.canRepeatNumber:
+		return;
 
 	if msg.message == str(counter):
 		lastUser = msg.userId;
@@ -123,9 +123,19 @@ func onMessage(msg: ChatMessage):
 		counter += 1;
 		updateNextLabel();
 		return;
-	Twitch.timeoutUser(msg.userId, 5);
+	applyTimeout(msg);
+
 	$Notification.showText('Wrong Number!\n' + msg.displayName);
 	frog.fall();
+
+func applyTimeout(msg: ChatMessage):
+	if msg.mod:
+		if Ranking.topRank.banMods:
+			Twitch.timeoutUser(msg.userId, 5);
+		return;
+
+	if Ranking.topRank.banUsers:
+		Twitch.timeoutUser(msg.userId, 5);
 
 func updateNextLabel():
 	$BallonCenterPoint/Balloon.updateLabel(str(counter));
@@ -135,3 +145,10 @@ func _exit_tree() -> void:
 
 func _on_frog_on_frog_has_died() -> void:
 	get_tree().change_scene_to_file('res://Scenes/Climb/Climb.tscn');
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	offScreenHighScoreContainer.visible = false;
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	if Ranking.topRank.heightInMeters != 0:
+		offScreenHighScoreContainer.visible = true;

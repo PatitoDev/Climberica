@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c8apa1uow61ht"]
+[gd_scene load_steps=33 format=3 uid="uid://c8apa1uow61ht"]
 
 [ext_resource type="Script" path="res://Scenes/TitleScreen/TitleScreen.gd" id="1_a8cxj"]
 [ext_resource type="Texture2D" uid="uid://dfvx2w8j714fd" path="res://Images/bg2.png" id="2_evwx2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://btpuduoehhps" path="res://Images/climberica.png" id="6_oabe4"]
 [ext_resource type="Texture2D" uid="uid://b3h6iw65avnv" path="res://Images/frgoface.png" id="7_lct16"]
 [ext_resource type="Texture2D" uid="uid://ljt5fmq10skx" path="res://Images/pole.png" id="10_g638q"]
+[ext_resource type="PackedScene" uid="uid://cu7y272vfk4cq" path="res://Scenes/Settings/settings.tscn" id="11_xhtm7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kg1ba"]
 atlas = ExtResource("5_sknx3")
@@ -351,5 +352,7 @@ scale = Vector2(1.49102, 1.49102)
 sprite_frames = SubResource("SpriteFrames_7s1g3")
 autoplay = "default"
 frame_progress = 0.770145
+
+[node name="settings" parent="." instance=ExtResource("11_xhtm7")]
 
 [connection signal="pressed" from="CanvasLayer/CenterContainer/TitleContainer/LoginBtn" to="." method="_on_button_pressed"]

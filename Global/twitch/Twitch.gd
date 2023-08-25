@@ -45,6 +45,8 @@ func _process(delta: float):
 				startChatClient();
 
 func startChatClient():
+	if _chatClient:
+		_chatClient.close();
 	_chatClient = WebSocketPeer.new();
 	_chatClient.connect_to_url(TWITCH_CHAT_WS_URL);
 

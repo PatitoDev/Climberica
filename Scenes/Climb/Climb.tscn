@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://dgxstaptghgbt"]
+[gd_scene load_steps=22 format=3 uid="uid://dgxstaptghgbt"]
 
 [ext_resource type="Script" path="res://Scenes/Climb/Climb.gd" id="1_7a36q"]
 [ext_resource type="Texture2D" uid="uid://dfvx2w8j714fd" path="res://Images/bg2.png" id="2_o1e5r"]
 [ext_resource type="Texture2D" uid="uid://cs1xpw1y5goi0" path="res://Images/flag.png" id="2_vvjnx"]
 [ext_resource type="Texture2D" uid="uid://cxprwmcuxsk4p" path="res://Images/arrow.png" id="3_nnihm"]
 [ext_resource type="PackedScene" uid="uid://bxa7iwntoer5n" path="res://Scenes/Climb/Marker/Marker.tscn" id="4_jtulm"]
+[ext_resource type="FontFile" uid="uid://ci4c7o4c24n26" path="res://Font/Pixellari.ttf" id="5_pksjw"]
 [ext_resource type="Texture2D" uid="uid://ljt5fmq10skx" path="res://Images/pole.png" id="5_rb0me"]
 [ext_resource type="Texture2D" uid="uid://da177ifwoubjl" path="res://Images/BottomLayer.png" id="6_oyu6n"]
 [ext_resource type="Texture2D" uid="uid://bf0fcx4dfb1sp" path="res://Images/poleArm.png" id="7_4goov"]
@@ -13,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bgnaa0n8yejrb" path="res://Scenes/Clouds/Clouds.tscn" id="11_6rp57"]
 [ext_resource type="PackedScene" uid="uid://cuvs4okf630mr" path="res://Scenes/Climb/Notification/Notification.tscn" id="12_77urk"]
 [ext_resource type="PackedScene" uid="uid://mfyoiw6qqhci" path="res://Scenes/Climb/Balloon/Balloon.tscn" id="12_oxbtx"]
+[ext_resource type="PackedScene" uid="uid://cu7y272vfk4cq" path="res://Scenes/Settings/settings.tscn" id="15_cm7g1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ua6c2"]
 atlas = ExtResource("2_vvjnx")
@@ -43,11 +45,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SystemFont" id="SystemFont_nxbok"]
-font_names = PackedStringArray("Pixellari")
-
 [sub_resource type="LabelSettings" id="LabelSettings_dtq6l"]
-font = SubResource("SystemFont_nxbok")
+font = ExtResource("5_pksjw")
 font_size = 8
 outline_size = 4
 outline_color = Color(0.192157, 0.192157, 0.192157, 1)
@@ -138,6 +137,8 @@ label_settings = SubResource("LabelSettings_dtq6l")
 [node name="OnScreenHighScore" parent="." instance=ExtResource("4_jtulm")]
 position = Vector2(78, 23)
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="OnScreenHighScore"]
+
 [node name="Pole" type="Sprite2D" parent="."]
 texture_repeat = 2
 position = Vector2(38, -50)
@@ -187,4 +188,8 @@ position = Vector2(-4, 50)
 
 [node name="Notification" parent="." instance=ExtResource("12_77urk")]
 
+[node name="settings" parent="." instance=ExtResource("15_cm7g1")]
+
+[connection signal="screen_entered" from="OnScreenHighScore/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="OnScreenHighScore/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="OnFrogHasDied" from="Frog" to="." method="_on_frog_on_frog_has_died"]

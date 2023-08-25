@@ -1,0 +1,284 @@
+[gd_scene load_steps=27 format=3 uid="uid://cu7y272vfk4cq"]
+
+[ext_resource type="Script" path="res://Scenes/Settings/settings.gd" id="1_u6gkx"]
+[ext_resource type="Texture2D" uid="uid://b4j4511v1eo6o" path="res://Images/settingsPanel.png" id="2_enpdl"]
+[ext_resource type="FontFile" uid="uid://24u51pg3pulx" path="res://Font/monogram.ttf" id="2_hocia"]
+[ext_resource type="PackedScene" uid="uid://dm3vlw77or5pj" path="res://UIControls/CheckBox.tscn" id="6_dvfqx"]
+[ext_resource type="Texture2D" uid="uid://drckcrygr8lal" path="res://Images/sliderPoint.png" id="6_n5jhf"]
+[ext_resource type="Texture2D" uid="uid://1dlgutwje3lf" path="res://Images/closeBtn.png" id="6_qoib0"]
+[ext_resource type="Texture2D" uid="uid://doitw7x06b5fb" path="res://Images/closeBtnHovered.png" id="7_p8ux6"]
+[ext_resource type="Texture2D" uid="uid://coxv6igrtvvu8" path="res://Images/DeleteBtn.png" id="8_3pdkr"]
+[ext_resource type="Texture2D" uid="uid://d2fw7b452nfp8" path="res://Images/DeleteBtnPressed.png" id="9_2lvte"]
+[ext_resource type="Texture2D" uid="uid://bobv0hsk8dwih" path="res://Images/areyousure.png" id="10_01her"]
+[ext_resource type="Texture2D" uid="uid://cm1wxetun56ph" path="res://Images/yesBtn.png" id="11_ppes2"]
+[ext_resource type="Texture2D" uid="uid://de70w81sl7ski" path="res://Images/yesBtnPressed.png" id="12_yc1uy"]
+[ext_resource type="Texture2D" uid="uid://ccct3o5kp24aj" path="res://Images/noBtn.png" id="13_287k7"]
+[ext_resource type="Texture2D" uid="uid://k0abo88mrwsg" path="res://Images/noBtnPressed.png" id="14_m6ju4"]
+[ext_resource type="Texture2D" uid="uid://dt8pfsk8e8iof" path="res://Images/cog.png" id="15_knot4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_od2go"]
+font = ExtResource("2_hocia")
+font_size = 10
+font_color = Color(0.253906, 0.265625, 0.324219, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds4mj"]
+bg_color = Color(0.254902, 0.266667, 0.32549, 1)
+border_color = Color(0.253906, 0.265625, 0.324219, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_lxf5j"]
+font = ExtResource("2_hocia")
+
+[sub_resource type="Animation" id="Animation_if2c3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/SettingsPanel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ee32y"]
+resource_name = "Show"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/SettingsPanel:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f6krq"]
+_data = {
+"RESET": SubResource("Animation_if2c3"),
+"Show": SubResource("Animation_ee32y")
+}
+
+[sub_resource type="Animation" id="Animation_o5phq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/AreYouSurePanel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_hrb7l"]
+resource_name = "Show"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/AreYouSurePanel:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.0003, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1e-05), Vector2(1, 1e-05), Vector2(1, 1e-05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q03od"]
+_data = {
+"RESET": SubResource("Animation_o5phq"),
+"Show": SubResource("Animation_hrb7l")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sfw0"]
+atlas = ExtResource("15_knot4")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ooys"]
+atlas = ExtResource("15_knot4")
+region = Rect2(20, 0, 20, 20)
+
+[node name="settings" type="CanvasLayer"]
+script = ExtResource("1_u6gkx")
+
+[node name="Control" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsPanel" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = -58.0
+offset_top = -64.0
+offset_right = 57.0
+offset_bottom = 63.0
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(51, 62)
+texture = ExtResource("2_enpdl")
+stretch_mode = 2
+
+[node name="CloseButton" type="TextureButton" parent="Control/SettingsPanel"]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 6.0
+offset_right = 107.0
+offset_bottom = 15.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("6_qoib0")
+texture_pressed = ExtResource("7_p8ux6")
+texture_hover = ExtResource("7_p8ux6")
+
+[node name="DeleteButton" type="TextureButton" parent="Control/SettingsPanel"]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 106.0
+offset_right = 93.0
+offset_bottom = 122.0
+texture_normal = ExtResource("8_3pdkr")
+texture_pressed = ExtResource("9_2lvte")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/SettingsPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 21.0
+offset_right = 93.0
+offset_bottom = 92.0
+theme_override_constants/separation = 4
+
+[node name="IsFullscreenCheckbox" parent="Control/SettingsPanel/VBoxContainer" instance=ExtResource("6_dvfqx")]
+layout_mode = 2
+text = "FULLSCREEN"
+
+[node name="Mod Timeout" parent="Control/SettingsPanel/VBoxContainer" instance=ExtResource("6_dvfqx")]
+layout_mode = 2
+
+[node name="User Timeout" parent="Control/SettingsPanel/VBoxContainer" instance=ExtResource("6_dvfqx")]
+layout_mode = 2
+text = "TIMEOUT USERS"
+
+[node name="User Repeat" parent="Control/SettingsPanel/VBoxContainer" instance=ExtResource("6_dvfqx")]
+layout_mode = 2
+text = "CAN REPEAT NUMBER"
+
+[node name="Label" type="Label" parent="Control/SettingsPanel/VBoxContainer"]
+layout_mode = 2
+text = "VOLUME (END ANIMATION)"
+label_settings = SubResource("LabelSettings_od2go")
+
+[node name="VolumeSlider" type="HSlider" parent="Control/SettingsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("6_n5jhf")
+theme_override_icons/grabber_highlight = ExtResource("6_n5jhf")
+theme_override_icons/grabber_disabled = ExtResource("6_n5jhf")
+theme_override_styles/slider = SubResource("StyleBoxFlat_ds4mj")
+min_value = -12.0
+max_value = 6.0
+
+[node name="AreYouSurePanel" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = -50.0
+offset_top = -9.0
+offset_right = 65.0
+offset_bottom = 65.0
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(55, 36)
+texture = ExtResource("10_01her")
+
+[node name="Label" type="Label" parent="Control/AreYouSurePanel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 14.0
+offset_right = 96.0
+offset_bottom = 30.0
+text = "ARE YOU SURE?"
+label_settings = SubResource("LabelSettings_lxf5j")
+
+[node name="YesBtn" type="TextureButton" parent="Control/AreYouSurePanel"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 42.0
+offset_right = 47.0
+offset_bottom = 56.0
+texture_normal = ExtResource("11_ppes2")
+texture_pressed = ExtResource("12_yc1uy")
+
+[node name="NoBtn" type="TextureButton" parent="Control/AreYouSurePanel"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 42.0
+offset_right = 88.0
+offset_bottom = 56.0
+texture_normal = ExtResource("13_287k7")
+texture_pressed = ExtResource("14_m6ju4")
+
+[node name="SettingsPlayer" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
+libraries = {
+"": SubResource("AnimationLibrary_f6krq")
+}
+
+[node name="AreYouSurePlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q03od")
+}
+
+[node name="UI" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureButton" type="TextureButton" parent="UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -27.0
+offset_right = -7.0
+offset_bottom = -7.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+texture_normal = SubResource("AtlasTexture_1sfw0")
+texture_pressed = SubResource("AtlasTexture_3ooys")
+texture_hover = SubResource("AtlasTexture_3ooys")
+
+[connection signal="pressed" from="Control/SettingsPanel/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Control/SettingsPanel/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="toggled" from="Control/SettingsPanel/VBoxContainer/IsFullscreenCheckbox" to="." method="_on_is_fullscreen_checkbox_toggled"]
+[connection signal="toggled" from="Control/SettingsPanel/VBoxContainer/Mod Timeout" to="." method="_on_mod_timeout_toggled"]
+[connection signal="toggled" from="Control/SettingsPanel/VBoxContainer/User Timeout" to="." method="_on_user_timeout_toggled"]
+[connection signal="toggled" from="Control/SettingsPanel/VBoxContainer/User Repeat" to="." method="_on_user_repeat_toggled"]
+[connection signal="drag_ended" from="Control/SettingsPanel/VBoxContainer/VolumeSlider" to="." method="_on_volume_slider_drag_ended"]
+[connection signal="value_changed" from="Control/SettingsPanel/VBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="Control/AreYouSurePanel/YesBtn" to="." method="_on_yes_btn_pressed"]
+[connection signal="pressed" from="Control/AreYouSurePanel/NoBtn" to="." method="_on_no_btn_pressed"]
+[connection signal="pressed" from="UI/TextureButton" to="." method="_on_texture_button_pressed"]

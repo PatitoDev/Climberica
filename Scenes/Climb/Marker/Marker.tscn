@@ -2,14 +2,11 @@
 
 [ext_resource type="Script" path="res://Scenes/Climb/Marker/Marker.gd" id="1_uqx31"]
 [ext_resource type="Texture2D" uid="uid://c4xubgclgh7xy" path="res://Images/stripe.png" id="2_2dj6c"]
+[ext_resource type="FontFile" uid="uid://ci4c7o4c24n26" path="res://Font/Pixellari.ttf" id="2_ulkwg"]
 [ext_resource type="Texture2D" uid="uid://cs1xpw1y5goi0" path="res://Images/flag.png" id="3_ynxft"]
 
-[sub_resource type="SystemFont" id="SystemFont_4472q"]
-font_names = PackedStringArray("Pixellari")
-subpixel_positioning = 0
-
 [sub_resource type="LabelSettings" id="LabelSettings_fo42p"]
-font = SubResource("SystemFont_4472q")
+font = ExtResource("2_ulkwg")
 font_size = 8
 outline_size = 4
 outline_color = Color(0.191406, 0.191406, 0.191406, 1)
